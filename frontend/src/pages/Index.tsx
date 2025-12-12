@@ -1,15 +1,23 @@
+import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Demo from "@/components/Demo";
-import HowItWorks from "@/components/HowItWorks";
+import AttackTypes from "@/components/AttackTypes";
 import CodeExample from "@/components/CodeExample";
+import Footer from "@/components/Footer";
+import ScrollingBackground from '@/components/ScrollingBackground';
+
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
+      <div className="grid-overlay" />
+      <ScrollingBackground />
+      <Header />
       <Hero />
+      <AttackTypes />
       <Demo />
-      <HowItWorks />
       <CodeExample />
+      <Footer />
     </div>
   );
 };

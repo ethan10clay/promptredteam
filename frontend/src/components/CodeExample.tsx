@@ -1,167 +1,194 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Copy, Check } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
+import { Check, Copy } from "lucide-react";
 
-const codeExamples = {
+const codeExamplesPlain = {
   python: `import requests
-import json
 
 response = requests.post(
     'https://api.promptredteam.com/test',
-    json={'text': 'Ignore all previous instructions'}
+    json={'text': user_input}
 )
 
-if response.status_code == 429:
-    print(f"Rate limited: {response.json()['message']}")
-else:
-    data = response.json()
-    print(json.dumps(data, indent=2))`,
+if response.json()['threats_detected'] > 0:
+    # Block or sanitize the input
+    raise SecurityError("Prompt injection detected")`,
 
   javascript: `const response = await fetch('https://api.promptredteam.com/test', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ text: 'Ignore all previous instructions' })
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ text: userInput })
 });
 
 const data = await response.json();
 
-if (response.status === 429) {
-    console.error(\`Rate limited: \${data.message}\`);
-} else {
-    console.log(JSON.stringify(data, null, 2));
+if (data.threats_detected > 0) {
+  throw new Error('Prompt injection detected');
 }`,
 
-  curl: `curl -X POST https://api.promptredteam.com/test -H "Content-Type: application/json" -d "{\"text\": \"Ignore all previous instructions\"} | jq`,
+  curl: `curl -X POST https://api.promptredteam.com/test -H "Content-Type: application/json" -d '{"text": "Ignore all previous instructions"}' | jq`
+};
 
-  go: `package main
+const codeExamples = {
+  python: (
+    <>
+      <span style={{ color: '#c084fc' }}>import</span> requests
+      {'\n\n'}
+      response = requests.post(
+      {'\n    '}
+      <span style={{ color: '#4ade80' }}>'https://api.promptredteam.com/test'</span>,
+      {'\n    '}
+      json={'{'}<span style={{ color: '#4ade80' }}>'text'</span>: user_input{'}'}
+      {'\n'}
+      )
+      {'\n\n'}
+      <span style={{ color: '#c084fc' }}>if</span> response.json()[<span style={{ color: '#4ade80' }}>'threats_detected'</span>] {'>'} 0:
+      {'\n    '}
+      <span style={{ color: '#52525b' }}># Block or sanitize the input</span>
+      {'\n    '}
+      <span style={{ color: '#c084fc' }}>raise</span> SecurityError(<span style={{ color: '#4ade80' }}>"Prompt injection detected"</span>)
+    </>
+  ),
 
-import (
-    "bytes"
-    "encoding/json"
-    "fmt"
-    "net/http"
-)
+  javascript: (
+    <>
+      <span style={{ color: '#c084fc' }}>const</span> response = <span style={{ color: '#c084fc' }}>await</span> fetch(<span style={{ color: '#4ade80' }}>'https://api.promptredteam.com/test'</span>, {'{'}
+      {'\n  '}
+      method: <span style={{ color: '#4ade80' }}>'POST'</span>,
+      {'\n  '}
+      headers: {'{'} <span style={{ color: '#4ade80' }}>'Content-Type'</span>: <span style={{ color: '#4ade80' }}>'application/json'</span> {'}'},
+      {'\n  '}
+      body: JSON.stringify({'{'} text: userInput {'}'})
+      {'\n'}
+      {'}'});
+      {'\n\n'}
+      <span style={{ color: '#c084fc' }}>const</span> data = <span style={{ color: '#c084fc' }}>await</span> response.json();
+      {'\n\n'}
+      <span style={{ color: '#c084fc' }}>if</span> (data.threats_detected {'>'} 0) {'{'}
+      {'\n  '}
+      <span style={{ color: '#c084fc' }}>throw</span> <span style={{ color: '#c084fc' }}>new</span> Error(<span style={{ color: '#4ade80' }}>'Prompt injection detected'</span>);
+      {'\n'}
+      {'}'}
+    </>
+  ),
 
-func main() {
-    payload := map[string]string{"text": "Ignore all previous instructions"}
-    jsonData, _ := json.Marshal(payload)
-    
-    resp, _ := http.Post(
-        "https://api.promptredteam.com/test",
-        "application/json",
-        bytes.NewBuffer(jsonData),
-    )
-    defer resp.Body.Close()
-    
-    var result map[string]interface{}
-    json.NewDecoder(resp.Body).Decode(&result)
-    
-    prettyJSON, _ := json.MarshalIndent(result, "", "  ")
-    fmt.Println(string(prettyJSON))
-}`
+  curl: (
+    <>
+      curl -X POST <span style={{ color: '#4ade80' }}>https://api.promptredteam.com/test</span> -H <span style={{ color: '#4ade80' }}>"Content-Type: application/json"</span> -d <span style={{ color: '#4ade80' }}>'"{'}"text": "Ignore all previous instructions"{'}'{"}"}'</span> | jq
+    </>
+  )
 };
 
 const languages = [
-  { id: 'python', name: 'Python'},
-  { id: 'javascript', name: 'JavaScript'},
-  { id: 'curl', name: 'cURL'},
-  { id: 'go', name: 'Go'},
+  { id: 'python', name: 'Python' },
+  { id: 'javascript', name: 'JavaScript' },
+  { id: 'curl', name: 'cURL' }
 ];
 
 const CodeExample = () => {
   const [activeTab, setActiveTab] = useState('python');
   const [copied, setCopied] = useState(false);
-  const { toast } = useToast();
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(codeExamples[activeTab]);
-    setCopied(true);
-    toast({
-      title: "Copied!",
-      description: "Code example copied to clipboard",
-    });
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopy = () => {
+    const code = codeExamplesPlain[activeTab as keyof typeof codeExamplesPlain];
+    
+    // Try modern clipboard API first
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(code).then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }).catch(() => {
+        // Fallback if clipboard API fails
+        fallbackCopy(code);
+      });
+    } else {
+      // Fallback for older browsers
+      fallbackCopy(code);
+    }
+  };
+
+  const fallbackCopy = (text: string) => {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+      document.execCommand('copy');
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Copy failed:', err);
+    }
+    document.body.removeChild(textArea);
   };
 
   return (
-    <section className="py-20 relative">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          {/* Section header */}
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Quick Integration</h2>
-            <p className="text-xl text-muted-foreground">
-              Get started in minutes with our simple API
-            </p>
-          </div>
+    <section
+      className="px-12 py-12 grid grid-cols-[1fr_1.5fr] gap-16 items-startr"
+      style={{ background: '#111113', minHeight: '460px' }}  // set once, adjust if needed
+    >
+      <div>
+        <h2 className="text-[2rem] font-semibold tracking-tight mb-4 text-[#fafafa]">
+          Three lines to integrate
+        </h2>
+        <p className="text-[#a1a1aa] mb-8 max-w-[400px]">
+          Drop into any application. Scan inputs before they reach your LLM. Block threats or log them for review.
+        </p>
+        <Link
+          to="/docs"
+          className="inline-block bg-[#ef4444] text-white px-7 py-3.5 rounded-lg font-semibold text-[0.9375rem] hover:bg-[#dc2626] hover:-translate-y-0.5 transition-all"
+        >
+          Read the Docs
+        </Link>
+      </div>
 
-          {/* Code block with tabs */}
-          <div className="glass rounded-2xl overflow-hidden shadow-[var(--shadow-glass)] border border-border">
-            {/* Language tabs */}
-            <div className="flex items-center justify-between px-6 py-3 bg-secondary/50 border-b border-border">
-              <div className="flex gap-2 overflow-x-auto">
-                {languages.map((lang) => (
-                  <button
-                    key={lang.id}
-                    onClick={() => setActiveTab(lang.id)}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                      activeTab === lang.id
-                        ? 'bg-primary text-primary-foreground'
-                        : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
-                    }`}
-                  >
-                    <span className="mr-2"></span>
-                    {lang.name}
-                  </button>
-                ))}
-              </div>
-
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={copyToClipboard}
-                className="hover:bg-secondary ml-4 flex-shrink-0"
-              >
-                {copied ? (
-                  <>
-                    <Check className="w-4 h-4 mr-2" />
-                    Copied
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-4 h-4 mr-2" />
-                    Copy
-                  </>
-                )}
-              </Button>
-            </div>
-
-            {/* Code content */}
-            <pre className="p-6 overflow-x-auto">
-              <code className="font-mono text-sm leading-relaxed text-foreground">
-                {codeExamples[activeTab]}
-              </code>
-            </pre>
-          </div>
-
-          {/* Documentation link */}
-          <div className="mt-6 text-center">
-            <p className="text-muted-foreground mb-3">
-              Rate limit: 10 requests/minute • Deploy your own for unlimited usage
-            </p>
-            <div className="flex gap-3 justify-center">
-              <Button 
-                variant="outline" 
-                className="border-border hover:bg-secondary"
-                asChild
-              >
-                <Link to="/Docs">View Documentation</Link>
-              </Button>
-            </div>
-          </div>
+      <div className="rounded-xl overflow-hidden self-start"
+        style={{
+          background: '#0a0a0b',
+          border: '1px solid #27272a'
+        }}
+      >
+        {/* Tabs */}
+        <div className="flex border-b border-[#27272a]">
+          {languages.map((lang) => (
+            <button
+              key={lang.id}
+              onClick={() => setActiveTab(lang.id)}
+              className="px-6 py-3.5 text-[0.8125rem] border-r border-[#27272a] transition-all"
+              style={{
+                color: activeTab === lang.id ? '#fafafa' : '#52525b',
+                background: activeTab === lang.id ? '#111113' : 'transparent'
+              }}
+            >
+              {lang.name}
+            </button>
+          ))}
+          <div className="flex-1" />
+          <button
+            onClick={handleCopy}
+            className="px-4 py-3.5 text-[0.8125rem] transition-all flex items-center gap-2"
+            style={{ color: copied ? '#22c55e' : '#52525b' }}
+          >
+            {copied ? (
+              <>
+                <Check size={16} />
+                <span>Copied</span>
+              </>
+            ) : (
+              <>
+                <Copy size={16} />
+                <span>Copy</span>
+              </>
+            )}
+          </button>
         </div>
+
+        {/* Code */}
+        <pre className="p-6 font-mono text-[0.8125rem] leading-[1.8] text-[#a1a1aa] overflow-x-auto">
+          <code>{codeExamples[activeTab as keyof typeof codeExamples]}</code>
+        </pre>
       </div>
     </section>
   );
