@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Demo from "@/components/Demo";
@@ -8,6 +9,10 @@ import ScrollingBackground from '@/components/ScrollingBackground';
 
 
 const Index = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen">
       <div className="grid-overlay" />

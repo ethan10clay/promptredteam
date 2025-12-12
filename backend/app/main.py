@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, validator
 from typing import List, Optional
 import time
-from app.middleware.rate_limit import rate_limiter
+from app.middleware.rate_limit import rate_limiter, rate_limit_middleware  # Import the middleware function
 
 # Since we're creating a standalone version, include AttackResult inline
 class AttackResult:
@@ -44,8 +44,8 @@ app = FastAPI(
     version="0.1.0"
 )
 
-# Add rate limiting middleware - CRITICAL: Must be added before CORS
-app.middleware("http")(rate_limiter)
+# Add rate limiting middleware - FIXED: Use the middleware function, not the RateLimiter instance
+app.middleware("http")(rate_limit_middleware)
 
 # CORS for frontend
 app.add_middleware(
