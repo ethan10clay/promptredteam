@@ -131,7 +131,7 @@ const CodeExample = () => {
     >
       <div>
         <h2 className="text-[2rem] font-semibold tracking-tight mb-4 text-[#fafafa]">
-          Copy. Paste. Protected.
+          Quick Implementation
         </h2>
         <p className="text-[#a1a1aa] mb-8 max-w-[400px]">
           Drop into any application. Scan inputs before they reach your LLM. Block threats or log them for review.
