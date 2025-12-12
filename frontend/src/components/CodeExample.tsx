@@ -12,7 +12,7 @@ response = requests.post(
 
 if response.json()['threats_detected'] > 0:
     # Block or sanitize the input
-    raise SecurityError("Prompt injection detected")`,
+    raise SecurityFlag("Prompt injection detected")`,
 
   javascript: `const response = await fetch('https://api.promptredteam.com/test', {
   method: 'POST',
