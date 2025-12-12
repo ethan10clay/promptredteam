@@ -46,7 +46,7 @@ const codeExamples = {
       {'\n    '}
       <span style={{ color: '#52525b' }}># Block or sanitize the input</span>
       {'\n    '}
-      <span style={{ color: '#c084fc' }}>raise</span> SecurityError(<span style={{ color: '#4ade80' }}>"Prompt injection detected"</span>)
+      <span style={{ color: '#c084fc' }}>raise</span> SecurityFlag(<span style={{ color: '#4ade80' }}>"Prompt injection detected"</span>)
     </>
   ),
 
