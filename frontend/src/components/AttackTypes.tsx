@@ -45,7 +45,7 @@ const AttackTypes = () => {
 
       <div 
         className="grid grid-cols-5 gap-px rounded-xl overflow-hidden"
-        style={{ background: '#27272a', border: '1px solid #27272a' }}
+        style={{ background: '#27272a', border: '1px solid #27272a', position: 'relative', zIndex: 1 }}
       >
         {attacks.map((attack) => (
           <Link

@@ -137,7 +137,7 @@ const Demo = () => {
 
         <div className="grid grid-cols-[1fr_1fr] gap-6">
           {/* Input */}
-          <div className="rounded-xl overflow-hidden" style={{ background: '#111113', border: '1px solid #27272a' }}>
+          <div className="rounded-xl overflow-hidden" style={{ background: '#111113', border: '1px solid #27272a', position: 'relative', zIndex: 1 }}>
             <div className="px-5 py-4 border-b border-[#27272a]">
               <span className="text-sm font-medium text-[#fafafa]">Input</span>
             </div>
@@ -184,7 +184,7 @@ const Demo = () => {
           </div>
 
           {/* Results */}
-          <div className="rounded-xl overflow-hidden" style={{ background: '#111113', border: '1px solid #27272a' }}>
+          <div className="rounded-xl overflow-hidden" style={{ background: '#111113', border: '1px solid #27272a', position: 'relative', zIndex: 1 }}>
             <div className="px-5 py-4 border-b border-[#27272a] flex items-center justify-between">
               <span className="text-sm font-medium text-[#fafafa]">Results</span>
               {results && (

@@ -38,7 +38,7 @@ const ScrollingBackground = () => {
 
       update(scrollDelta: number) {
         this.x += this.vx;
-        this.y += this.vy + scrollDelta * 0.001; // Slight scroll parallax
+        this.y += this.vy + scrollDelta * 0.02; // Slight scroll parallax
 
         // Wrap around
         if (this.x < 0) this.x = window.innerWidth;

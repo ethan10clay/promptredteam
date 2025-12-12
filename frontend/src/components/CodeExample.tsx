@@ -147,7 +147,9 @@ const CodeExample = () => {
       <div className="rounded-xl overflow-hidden self-start"
         style={{
           background: '#0a0a0b',
-          border: '1px solid #27272a'
+          border: '1px solid #27272a',
+          position: 'relative',
+          zIndex: 1
         }}
       >
         {/* Tabs */}
