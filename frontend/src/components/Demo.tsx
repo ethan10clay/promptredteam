@@ -121,13 +121,13 @@ const Demo = () => {
       <div className="max-w-5xl mx-auto">
         <div className="mb-8">
           <h2 className="text-[2rem] font-semibold tracking-tight mb-2 text-[#fafafa]">Try it live</h2>
-          <p className="text-[#52525b] text-sm">
+          <p className="text-[#a1a1aa] text-sm">
             Test any prompt for security vulnerabilities · 10 requests/min ·{" "}
             <a 
               href="https://github.com/ethan10clay/promptredteam-api" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-[#a1a1aa] hover:text-[#fafafa] transition-colors"
+              className="text-[#fafafa] hover:text-[#ef4444] transition-colors"
             >
               deploy your own
             </a>{" "}

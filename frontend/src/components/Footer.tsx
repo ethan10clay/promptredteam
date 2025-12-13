@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="flex gap-8">
         <Link 
           to="/docs" 
-          className="text-[#52525b] text-sm hover:text-[#fafafa] transition-colors"
+          className="text-[#a1a1aa] text-sm hover:text-[#fafafa] transition-colors"
         >
           Documentation
         </Link>
@@ -14,18 +14,18 @@ const Footer = () => {
           href="https://github.com/ethan10clay/promptredteam-api"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#52525b] text-sm hover:text-[#fafafa] transition-colors"
+          className="text-[#a1a1aa] text-sm hover:text-[#fafafa] transition-colors"
         >
           GitHub
         </a>
         <Link 
           to="/learn" 
-          className="text-[#52525b] text-sm hover:text-[#fafafa] transition-colors"
+          className="text-[#a1a1aa] text-sm hover:text-[#fafafa] transition-colors"
         >
-          Learn about attacks
+          Learn About Prompt Injection
         </Link>
       </div>
-      <div className="text-[0.8125rem] text-[#52525b]">
+      <div className="text-[0.8125rem] text-[#a1a1aa]">
         Open source · MIT License
       </div>
     </footer>

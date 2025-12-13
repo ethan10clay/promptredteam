@@ -39,7 +39,7 @@ const AttackTypes = () => {
       <div className="flex justify-between items-end mb-6">
         <div>
           <h2 className="text-[2rem] font-semibold tracking-tight text-[#fafafa]">What we detect</h2>
-          <p className="text-[#52525b] text-sm">Five categories of prompt injection attacks</p>
+          <p className="text-[#a1a1aa] text-sm">Five categories of prompt injection attacks</p>
         </div>
       </div>
 
@@ -62,13 +62,13 @@ const AttackTypes = () => {
               e.currentTarget.style.boxShadow = 'none';
             }}
           >
-            <div className="font-mono text-xs text-[#52525b] mb-4 tracking-wide">
+            <div className="font-mono text-xs text-[#a1a1aa] mb-4 tracking-wide">
               {attack.number}
             </div>
             <h3 className="text-base font-semibold mb-2 text-[#fafafa] transition-colors group-hover:text-[#ef4444]">
               {attack.title}
             </h3>
-            <p className="text-[0.8125rem] text-[#52525b] leading-relaxed">
+            <p className="text-[0.8125rem] text-[#a1a1aa] leading-relaxed">
               {attack.description}
             </p>
             <div className="mt-4 text-sm opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-[#ef4444]">
