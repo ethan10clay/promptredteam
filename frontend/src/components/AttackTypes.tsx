@@ -35,23 +35,23 @@ const attacks = [
 
 const AttackTypes = () => {
   return (
-    <section className="px-12 py-12">
-      <div className="flex justify-between items-end mb-6">
+    <section className="px-4 sm:px-8 lg:px-12 py-8 lg:py-12">
+      <div className="flex justify-between items-end mb-4 sm:mb-6">
         <div>
-          <h2 className="text-[2rem] font-semibold tracking-tight text-[#fafafa]">What we detect</h2>
-          <p className="text-[#a1a1aa] text-sm">Five categories of prompt injection attacks</p>
+          <h2 className="text-[1.75rem] sm:text-[2rem] font-semibold tracking-tight text-[#fafafa]">What we detect</h2>
+          <p className="text-[#a1a1aa] text-xs sm:text-sm">Five categories of prompt injection attacks</p>
         </div>
       </div>
 
       <div 
-        className="grid grid-cols-5 gap-px rounded-xl overflow-hidden"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-px sm:gap-px rounded-xl overflow-hidden"
         style={{ background: '#27272a', border: '1px solid #27272a', position: 'relative', zIndex: 1 }}
       >
         {attacks.map((attack) => (
           <Link
             key={attack.number}
             to={attack.href}
-            className="p-8 transition-all duration-200 hover:-translate-y-0.5 group"
+            className="p-4 sm:p-6 lg:p-8 transition-all duration-200 hover:-translate-y-0.5 group"
             style={{ background: '#111113' }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = '#18181b';
@@ -62,16 +62,16 @@ const AttackTypes = () => {
               e.currentTarget.style.boxShadow = 'none';
             }}
           >
-            <div className="font-mono text-xs text-[#a1a1aa] mb-4 tracking-wide">
+            <div className="font-mono text-[0.625rem] sm:text-xs text-[#a1a1aa] mb-2 sm:mb-3 tracking-wide">
               {attack.number}
             </div>
-            <h3 className="text-base font-semibold mb-2 text-[#fafafa] transition-colors group-hover:text-[#ef4444]">
+            <h3 className="text-sm sm:text-base font-semibold mb-1.5 sm:mb-2 text-[#fafafa] transition-colors group-hover:text-[#ef4444]">
               {attack.title}
             </h3>
-            <p className="text-[0.8125rem] text-[#a1a1aa] leading-relaxed">
+            <p className="text-[0.75rem] sm:text-[0.8125rem] text-[#a1a1aa] leading-relaxed">
               {attack.description}
             </p>
-            <div className="mt-4 text-sm opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-[#ef4444]">
+            <div className="mt-2 sm:mt-3 lg:mt-4 text-sm opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-[#ef4444]">
               →
             </div>
           </Link>

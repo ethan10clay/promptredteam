@@ -27,7 +27,7 @@ const Learn = () => {
       if (hash) {
         const element = document.querySelector(hash);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
       }
     };

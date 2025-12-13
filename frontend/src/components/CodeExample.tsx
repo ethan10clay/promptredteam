@@ -126,25 +126,26 @@ const CodeExample = () => {
 
   return (
     <section
-      className="px-12 py-12 grid grid-cols-[1fr_1.5fr] gap-16 items-startr"
-      style={{ background: '#111113', minHeight: '460px' }}  // set once, adjust if needed
+      className="px-4 sm:px-8 lg:px-12 py-8 lg:py-12 lg:min-h-[460px] grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8 lg:gap-16 items-start"
+      style={{ background: '#111113' }}
     >
       <div>
-        <h2 className="text-[2rem] font-semibold tracking-tight mb-4 text-[#fafafa]">
+        <h2 className="text-[1.75rem] sm:text-[2rem] font-semibold tracking-tight mb-3 sm:mb-4 text-[#fafafa]">
           Quick Implementation
         </h2>
-        <p className="text-[#a1a1aa] mb-8 max-w-[400px]">
+        <p className="text-[#a1a1aa] text-sm sm:text-base mb-6 sm:mb-8 max-w-[400px]">
           Drop into any application. Scan inputs before they reach your LLM. Block threats or log them for review.
         </p>
         <Link
           to="/docs"
-          className="inline-block bg-[#ef4444] text-white px-7 py-3.5 rounded-lg font-semibold text-[0.9375rem] hover:bg-[#dc2626] hover:-translate-y-0.5 transition-all"
+          className="inline-block bg-[#ef4444] text-white px-6 py-3 sm:px-7 sm:py-3.5 rounded-lg font-semibold text-sm sm:text-[0.9375rem] hover:bg-[#dc2626] hover:-translate-y-0.5 transition-all"
         >
           Read the Docs
         </Link>
       </div>
 
-      <div className="rounded-xl overflow-hidden self-start"
+      {/* Code block - hidden on mobile */}
+      <div className="hidden lg:block rounded-xl overflow-hidden self-start"
         style={{
           background: '#0a0a0b',
           border: '1px solid #27272a',
