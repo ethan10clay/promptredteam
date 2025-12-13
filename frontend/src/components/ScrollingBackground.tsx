@@ -13,7 +13,7 @@ const ScrollingBackground = () => {
     // Set canvas size
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight; // Use viewport height, not document height
+      canvas.height = window.innerHeight;
     };
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
@@ -38,7 +38,7 @@ const ScrollingBackground = () => {
 
       update(scrollDelta: number) {
         this.x += this.vx;
-        this.y += this.vy + scrollDelta * 0.02; // Slight scroll parallax
+        this.y += this.vy + scrollDelta * 0.02;
 
         // Wrap around
         if (this.x < 0) this.x = window.innerWidth;
@@ -53,9 +53,17 @@ const ScrollingBackground = () => {
       }
     }
 
-    // Create particles
+    // Create particles - responsive count based on screen width
+    const getParticleCount = () => {
+      const width = window.innerWidth;
+      if (width < 640) return 30; // Mobile: fewer particles
+      if (width < 1024) return 60; // Tablet: medium particles
+      return 80; // Desktop: full particles
+    };
+
     const particles: Particle[] = [];
-    for (let i = 0; i < 80; i++) {
+    const particleCount = getParticleCount();
+    for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
     }
 
@@ -116,8 +124,8 @@ const ScrollingBackground = () => {
         width: '100%',
         height: '100%',
         pointerEvents: 'none',
-        zIndex: 0,
-        opacity: 2
+        zIndex: -1, // Changed from 0 to -1 to ensure it's always behind content
+        opacity: 1 // Changed from 2 to 1 (opacity can't be > 1 anyway)
       }}
     />
   );
