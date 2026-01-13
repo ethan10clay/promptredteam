@@ -9,8 +9,7 @@ from app.middleware.rate_limit import rate_limiter, rate_limit_middleware  # Imp
 class AttackResult:
     def __init__(self, attack_name: str, attack_type: str, detected: bool, 
                  severity: float, confidence: float, description: str,
-                 evidence: Optional[str] = None, mitigation: Optional[str] = None,
-                 reference_url: Optional[str] = None):
+                 evidence: Optional[str] = None, mitigation: Optional[str] = None):
         self.attack_name = attack_name
         self.attack_type = attack_type
         self.detected = detected
@@ -19,7 +18,6 @@ class AttackResult:
         self.description = description
         self.evidence = evidence
         self.mitigation = mitigation
-        self.reference_url = reference_url
 
 from app.attacks import (
     ZeroWidthAttack,
@@ -85,7 +83,6 @@ class AttackResultResponse(BaseModel):
     description: str
     evidence: Optional[str]
     mitigation: Optional[str]
-    reference_url: Optional[str]
 
 class TestResponse(BaseModel):
     scan_id: str
