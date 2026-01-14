@@ -16,7 +16,7 @@ This is the full-stack monorepo: React frontend, FastAPI backend, and AWS deploy
 
 ## Architecture
 
-![AWS Architecture](promptredteam-architecture.png)
+![AWS Architecture](aws_architecture.png)
 
 ---
 
