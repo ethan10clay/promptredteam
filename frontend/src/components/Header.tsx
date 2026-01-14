@@ -22,26 +22,28 @@ const Header = () => {
 
       {/* Desktop Navigation */}
       <nav className="hidden md:flex gap-6 lg:gap-10 items-center">
-        <Link 
-          to="/docs" 
+        <a 
+          href="https://github.com/ethan10clay/promptredteam" 
+          target="_blank" 
+          rel="noopener noreferrer"
           className="text-[#a1a1aa] text-sm hover:text-[#fafafa] transition-colors"
         >
-          Docs
-        </Link>
-        <Link 
-          to="/learn" 
-          className="text-[#a1a1aa] text-sm hover:text-[#fafafa] transition-colors"
-        >
-          Learn
-        </Link>
+          Full Project GitHub
+        </a>
         <a 
           href="https://github.com/ethan10clay/promptredteam-api" 
           target="_blank" 
           rel="noopener noreferrer"
           className="text-[#a1a1aa] text-sm hover:text-[#fafafa] transition-colors"
         >
-          GitHub
+          API GitHub
         </a>
+        <Link 
+          to="/learn" 
+          className="text-[#a1a1aa] text-sm hover:text-[#fafafa] transition-colors"
+        >
+          Learn
+        </Link>
       </nav>
 
       {/* Mobile Menu Button */}
@@ -64,20 +66,15 @@ const Header = () => {
         }}
       >
         <nav className="flex flex-col gap-6 p-6">
-          <Link 
-            to="/docs" 
+          <a 
+            href="https://github.com/ethan10clay/promptredteam" 
+            target="_blank" 
+            rel="noopener noreferrer"
             className="text-[#a1a1aa] text-lg hover:text-[#fafafa] transition-colors border-b border-[#27272a] pb-4"
             onClick={() => setMobileMenuOpen(false)}
           >
-            Docs
-          </Link>
-          <Link 
-            to="/learn" 
-            className="text-[#a1a1aa] text-lg hover:text-[#fafafa] transition-colors border-b border-[#27272a] pb-4"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Learn
-          </Link>
+            Full Project GitHub
+          </a>
           <a 
             href="https://github.com/ethan10clay/promptredteam-api" 
             target="_blank" 
@@ -85,8 +82,15 @@ const Header = () => {
             className="text-[#a1a1aa] text-lg hover:text-[#fafafa] transition-colors border-b border-[#27272a] pb-4"
             onClick={() => setMobileMenuOpen(false)}
           >
-            GitHub
+            API GitHub
           </a>
+          <Link 
+            to="/learn" 
+            className="text-[#a1a1aa] text-lg hover:text-[#fafafa] transition-colors border-b border-[#27272a] pb-4"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Learn
+          </Link>
         </nav>
       </div>
     </header>

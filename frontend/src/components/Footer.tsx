@@ -11,12 +11,20 @@ const Footer = () => {
           Documentation
         </Link>
         <a 
+          href="https://github.com/ethan10clay/promptredteam"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#a1a1aa] text-xs sm:text-sm hover:text-[#fafafa] transition-colors"
+        >
+          Full Project GitHub
+        </a>
+        <a 
           href="https://github.com/ethan10clay/promptredteam-api"
           target="_blank"
           rel="noopener noreferrer"
           className="text-[#a1a1aa] text-xs sm:text-sm hover:text-[#fafafa] transition-colors"
         >
-          GitHub
+          API GitHub
         </a>
         <Link 
           to="/learn" 

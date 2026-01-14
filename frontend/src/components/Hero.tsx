@@ -21,14 +21,6 @@ const Hero = () => {
           >
             Try the Scanner →
           </button>
-          <a 
-            href="https://github.com/ethan10clay/promptredteam-api"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#a1a1aa] text-sm sm:text-[0.9375rem] hover:text-[#fafafa] transition-colors text-center sm:text-left"
-          >
-            View on GitHub
-          </a>
         </div>
       </div>
 

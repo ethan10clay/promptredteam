@@ -136,12 +136,14 @@ const CodeExample = () => {
         <p className="text-[#a1a1aa] text-sm sm:text-base mb-6 sm:mb-8 max-w-[400px]">
           Drop into any application. Scan inputs before they reach your LLM. Block threats or log them for review.
         </p>
-        <Link
-          to="/docs"
+        <a
+          href="https://github.com/ethan10clay/promptredteam-api/blob/main/README.md"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-block bg-[#ef4444] text-white px-6 py-3 sm:px-7 sm:py-3.5 rounded-lg font-semibold text-sm sm:text-[0.9375rem] hover:bg-[#dc2626] hover:-translate-y-0.5 transition-all"
         >
           Read the Docs
-        </Link>
+        </a>
       </div>
 
       {/* Code block - hidden on mobile */}
