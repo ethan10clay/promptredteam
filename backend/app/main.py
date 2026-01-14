@@ -37,7 +37,7 @@ ATTACKS = {
 }
 
 app = FastAPI(
-    title="LLM Security Testing API",
+    title="PromptRedTeam API",
     description="Test your prompts for security vulnerabilities - Free & Open Source",
     version="0.1.0"
 )
@@ -99,7 +99,7 @@ class TestResponse(BaseModel):
 @app.get("/")
 def root():
     return {
-        "service": "LLM Security Testing API",
+        "service": "PromptRedTeam API",
         "version": "0.1.0",
         "status": "online",
         "docs": "/docs",
