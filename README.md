@@ -2,7 +2,7 @@
 
 Full-stack LLM security testing platform. Scan prompts for injection attacks, role manipulation, and other vulnerabilities.
 
-**[Landing Page](https://promptredteam.com)** · **[API Documentation](https://promptredteam.com/docs)** · **[Self-Hostable API](https://github.com/ethan10clay/promptredteam-api)**
+**[Landing Page](https://promptredteam.com)** · **[API Documentation](https://github.com/ethan10clay/promptredteam-api/blob/main/README.md)** · **[Self-Hostable API](https://github.com/ethan10clay/promptredteam-api)**
 
 ---
 
